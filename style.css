@@ -2,12 +2,13 @@
 
 :root {
     /* SECTION 1 - Dashboard Colors */
-    --color-dash-bg: #0D0D0D;
-    --color-dash-primary: #F5A623;
-    --color-dash-secondary: #FF6B6B;
-    --color-dash-card: #1A1A1A;
-    --color-dash-text: #FFFFFF;
-    --color-dash-text-muted: #AAAAAA;
+    --color-dash-bg: linear-gradient(135deg, #00D4FF 0%, #7B2CBF 100%);
+    --color-dash-bg-solid: #00D4FF;
+    --color-dash-primary: #0066CC;
+    --color-dash-secondary: #FF006E;
+    --color-dash-card: rgba(255, 255, 255, 0.95);
+    --color-dash-text: #1A1A3E;
+    --color-dash-text-muted: #666699;
 
     /* SECTION 3 - Women's Health Colors */
     --color-womens-bg: #FDF6F0;
@@ -104,11 +105,12 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    background: var(--color-dash-bg);
+    background: linear-gradient(135deg, #00D4FF 0%, #7B2CBF 100%);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
     z-index: 1000;
     padding: 1rem 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-container {
@@ -124,7 +126,7 @@ body {
     font-family: var(--font-display);
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--color-dash-primary);
+    color: white;
 }
 
 .nav-menu {
@@ -134,7 +136,7 @@ body {
 }
 
 .nav-link {
-    color: var(--color-dash-text);
+    color: white;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s;
@@ -148,7 +150,7 @@ body {
     left: 0;
     width: 100%;
     height: 2px;
-    background: var(--color-dash-primary);
+    background: white;
     transform: scaleX(0);
     transition: transform 0.3s;
 }
@@ -170,7 +172,7 @@ body {
 .hamburger span {
     width: 25px;
     height: 3px;
-    background: var(--color-dash-primary);
+    background: white;
     transition: 0.3s;
 }
 
@@ -189,7 +191,7 @@ body {
 /* ===== SECTION 1: DASHBOARD ===== */
 
 .dashboard-section {
-    background: var(--color-dash-bg);
+    background: linear-gradient(135deg, #00D4FF 0%, #7B2CBF 100%);
     color: var(--color-dash-text);
     padding-top: 80px;
 }
@@ -209,8 +211,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 20% 50%, rgba(245, 166, 35, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 50%, rgba(255, 107, 107, 0.15) 0%, transparent 50%);
+    background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(123, 44, 191, 0.2) 0%, transparent 50%);
     z-index: 0;
 }
 
@@ -254,23 +256,23 @@ body {
 }
 
 .btn-primary {
-    background: var(--color-dash-primary);
-    color: #000;
+    background: linear-gradient(135deg, #00D4FF 0%, #0066CC 100%);
+    color: white;
 }
 
 .btn-primary:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(245, 166, 35, 0.3);
+    box-shadow: 0 8px 24px rgba(0, 102, 204, 0.4);
 }
 
 .btn-ghost {
     background: transparent;
-    color: var(--color-dash-text);
-    border: 2px solid var(--color-dash-primary);
+    color: white;
+    border: 2px solid white;
 }
 
 .btn-ghost:hover {
-    background: rgba(245, 166, 35, 0.1);
+    background: rgba(255, 255, 255, 0.1);
     transform: translateY(-4px);
 }
 
@@ -278,8 +280,8 @@ body {
     padding: 0.5rem 1rem;
     font-size: 0.875rem;
     border-radius: 6px;
-    background: var(--color-dash-primary);
-    color: #000;
+    background: linear-gradient(135deg, #00D4FF 0%, #0066CC 100%);
+    color: white;
     border: none;
     cursor: pointer;
     font-weight: 600;
@@ -288,6 +290,7 @@ body {
 
 .btn-small:hover {
     transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
 }
 
 .dashboard-container {
@@ -306,13 +309,15 @@ body {
 }
 
 .tracker-card {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid rgba(0, 100, 204, 0.2);
     border-radius: 16px;
     backdrop-filter: blur(10px);
     padding: 2rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     opacity: 0;
     animation: fadeInUp 0.6s forwards;
+    color: var(--color-dash-text);
 }
 
 .tracker-card:nth-child(2) { animation-delay: 0.1s; }
@@ -324,7 +329,7 @@ body {
     font-size: 0.875rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: var(--color-dash-primary);
+    color: #0066CC;
     margin-bottom: 1rem;
 }
 
@@ -349,7 +354,7 @@ body {
 
 .ring-progress {
     fill: none;
-    stroke: var(--color-dash-primary);
+    stroke: url(#gradientStroke);
     stroke-width: 8;
     stroke-dasharray: 314;
     stroke-dashoffset: calc(314 - (314 * var(--percentage) / 100));
@@ -472,8 +477,8 @@ body {
 .input-field {
     flex: 1;
     padding: 0.75rem;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid #00D4FF;
     border-radius: 8px;
     color: var(--color-dash-text);
     font-family: var(--font-body);
@@ -486,9 +491,9 @@ body {
 
 .input-field:focus {
     outline: none;
-    background: rgba(245, 166, 35, 0.1);
-    border-color: var(--color-dash-primary);
-    box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.2);
+    background: rgba(255, 255, 255, 1);
+    border-color: #0066CC;
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.2);
 }
 
 .card-input {
@@ -513,11 +518,12 @@ body {
 }
 
 .chart-container {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid rgba(0, 100, 204, 0.2);
     border-radius: 16px;
     padding: 2rem;
     overflow-x: auto;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 .activity-chart {
@@ -526,12 +532,12 @@ body {
 }
 
 .axis {
-    stroke: rgba(255, 255, 255, 0.15);
+    stroke: var(--color-dash-text-muted);
     stroke-width: 2;
 }
 
 .grid-line {
-    stroke: rgba(255, 255, 255, 0.05);
+    stroke: rgba(0, 102, 204, 0.1);
     stroke-width: 1;
     stroke-dasharray: 4;
 }
@@ -544,25 +550,27 @@ body {
 
 .chart-curve {
     fill: none;
-    stroke: var(--color-dash-primary);
+    stroke: #0066CC;
     stroke-width: 3;
     stroke-linecap: round;
     stroke-linejoin: round;
 }
 
 .chart-dot {
-    fill: var(--color-dash-secondary);
+    fill: #FF006E;
     r: 4;
 }
 
 /* Workout Logger */
 
 .workout-logger {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid rgba(0, 100, 204, 0.2);
     border-radius: 16px;
     padding: 2rem;
     margin-bottom: 4rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    color: var(--color-dash-text);
 }
 
 .workout-logger h2 {
@@ -590,23 +598,26 @@ body {
 }
 
 .log-entry {
-    background: rgba(245, 166, 35, 0.1);
-    border-left: 3px solid var(--color-dash-primary);
+    background: rgba(0, 102, 204, 0.08);
+    border-left: 4px solid #0066CC;
     padding: 1rem;
     margin-bottom: 0.5rem;
     border-radius: 4px;
     animation: slideInRight 0.3s;
     font-size: 0.875rem;
+    color: var(--color-dash-text);
 }
 
 /* BMI Calculator */
 
 .bmi-calculator {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid rgba(0, 100, 204, 0.2);
     border-radius: 16px;
     padding: 2rem;
     margin-bottom: 4rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    color: var(--color-dash-text);
 }
 
 .bmi-calculator h2 {
@@ -624,8 +635,8 @@ body {
 }
 
 .bmi-result {
-    background: rgba(245, 166, 35, 0.15);
-    border: 1px solid var(--color-dash-primary);
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.15) 0%, rgba(0, 102, 204, 0.15) 100%);
+    border: 2px solid #0066CC;
     border-radius: 12px;
     padding: 2rem;
     text-align: center;
@@ -636,7 +647,7 @@ body {
     font-family: var(--font-accent);
     font-size: 3rem;
     font-weight: 700;
-    color: var(--color-dash-primary);
+    color: #0066CC;
 }
 
 .bmi-category {
@@ -659,8 +670,8 @@ body {
 /* ===== SECTION 2: FITNESS BASICS ===== */
 
 .basics-section {
-    background: #111111;
-    color: var(--color-dash-text);
+    background: #F8F9FF;
+    color: #1A1A3E;
     padding-top: 80px;
 }
 
@@ -674,15 +685,15 @@ body {
     text-align: center;
     margin-bottom: 4rem;
     padding-bottom: 2rem;
-    border-bottom: 2px solid var(--color-dash-primary);
+    border-bottom: 3px solid #0066CC;
 }
 
 .basics-hero h2 {
     font-family: var(--font-display);
     font-size: 3rem;
     line-height: 1.2;
+    color: #0066CC;
 }
-
 /* Energy Systems */
 
 .energy-systems {
@@ -725,12 +736,12 @@ body {
     font-family: var(--font-display);
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
-    color: var(--color-dash-text);
+    color: #0066CC;
 }
 
 .energy-card p {
     font-size: 0.95rem;
-    color: var(--color-dash-text-muted);
+    color: #666699;
     line-height: 1.5;
 }
 
@@ -741,6 +752,7 @@ body {
     font-size: 2.5rem;
     margin-bottom: 2rem;
     text-align: center;
+    color: #0066CC;
 }
 
 .macros-grid {
@@ -751,11 +763,20 @@ body {
 }
 
 .macro-card {
-    background: #1C1C1C;
+    background: white;
     border-radius: 12px;
     padding: 2rem;
     opacity: 0;
     animation: fadeInUp 0.6s forwards;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 2px solid #F0F4FF;
+    color: #1A1A3E;
+    transition: all 0.3s;
+}
+
+.macro-card:hover {
+    border-color: #00D4FF;
+    box-shadow: 0 8px 24px rgba(0, 102, 204, 0.1);
 }
 
 .macro-card:nth-child(2) { animation-delay: 0.1s; }
@@ -785,11 +806,12 @@ body {
     font-size: 1.5rem;
     margin-bottom: 0.75rem;
     text-align: center;
+    color: #0066CC;
 }
 
 .macro-card p {
     text-align: center;
-    color: var(--color-dash-text-muted);
+    color: #666699;
     font-size: 0.95rem;
     margin-bottom: 1rem;
     line-height: 1.5;
@@ -803,12 +825,12 @@ body {
 }
 
 .tag {
-    background: rgba(245, 166, 35, 0.15);
-    color: var(--color-dash-primary);
+    background: rgba(0, 102, 204, 0.1);
+    color: #0066CC;
     padding: 0.35rem 0.75rem;
     border-radius: 20px;
     font-size: 0.8rem;
-    border: 1px solid rgba(245, 166, 35, 0.3);
+    border: 1px solid rgba(0, 102, 204, 0.3);
 }
 
 /* Quiz Section */
@@ -1962,10 +1984,10 @@ body {
 /* ===== FOOTER ===== */
 
 .footer {
-    background: var(--color-dash-bg);
-    color: var(--color-dash-text);
+    background: linear-gradient(135deg, #00D4FF 0%, #7B2CBF 100%);
+    color: white;
     padding: 4rem 2rem 1rem;
-    border-top: 2px solid var(--color-dash-primary);
+    border-top: 2px solid rgba(255, 255, 255, 0.2);
 }
 
 .footer-content {
@@ -1980,12 +2002,12 @@ body {
 .footer-left h3 {
     font-family: var(--font-display);
     font-size: 1.5rem;
-    color: var(--color-dash-primary);
+    color: white;
     margin-bottom: 0.5rem;
 }
 
 .footer-left p {
-    color: var(--color-dash-text-muted);
+    color: rgba(255, 255, 255, 0.8);
     font-size: 0.95rem;
 }
 
@@ -1995,7 +2017,7 @@ body {
     letter-spacing: 1px;
     font-size: 0.875rem;
     margin-bottom: 1rem;
-    color: var(--color-dash-primary);
+    color: white;
 }
 
 .footer-right ul {
@@ -2003,7 +2025,7 @@ body {
 }
 
 .footer-right a {
-    color: var(--color-dash-text-muted);
+    color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
     display: block;
     padding: 0.5rem 0;
@@ -2011,17 +2033,17 @@ body {
 }
 
 .footer-right a:hover {
-    color: var(--color-dash-primary);
+    color: white;
 }
 
 .footer-disclaimer {
     max-width: 1200px;
     margin: 0 auto;
     padding-top: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
     text-align: center;
     font-size: 0.875rem;
-    color: var(--color-dash-text-muted);
+    color: rgba(255, 255, 255, 0.8);
     line-height: 1.6;
 }
 
