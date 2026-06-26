@@ -293,46 +293,45 @@ body {
     box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
 }
 
-/* Dashboard Layout with Side Images */
+/* Hero Section Layout with Side Images */
 
-.dashboard-layout {
+.hero-layout {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
     gap: 2rem;
-    max-width: 1600px;
-    margin: 0 auto;
-    padding: 80px 2rem;
+    position: relative;
+    min-height: 100vh;
 }
 
-.dashboard-side {
-    display: none;
+.hero-side {
+    display: flex;
     flex: 0 0 300px;
     position: relative;
 }
 
-.dashboard-side.dashboard-left {
+.hero-side.hero-left {
     display: flex;
 }
 
-.dashboard-side.dashboard-right {
+.hero-side.hero-right {
     display: flex;
 }
 
-.side-image {
+.hero-image {
     width: 100%;
     height: 600px;
     object-fit: cover;
     border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease;
 }
 
-.dashboard-side:hover .side-image {
+.hero-side:hover .hero-image {
     transform: scale(1.02);
 }
 
-.side-overlay {
+.hero-overlay {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -345,7 +344,7 @@ body {
     height: 40%;
 }
 
-.side-text {
+.hero-side-text {
     color: white;
     font-family: var(--font-display);
     font-size: 1.3rem;
@@ -355,10 +354,29 @@ body {
     margin: 0;
 }
 
+.hero {
+    position: relative;
+    min-height: auto;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex: 1;
+    max-width: 600px;
+}
+
+/* Dashboard Layout - Cards Section */
+
+.dashboard-layout {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 2rem;
+}
+
 .dashboard-container {
     max-width: 1200px;
-    flex: 1;
-    padding: 0;
+    margin: 0 auto;
 }
 
 /* Tracker Cards Grid */
@@ -2125,18 +2143,22 @@ body {
         font-size: 3.5rem;
     }
 
-    .dashboard-layout {
+    .hero-layout {
         flex-direction: column;
-        padding: 40px 2rem;
-        gap: 2rem;
+        gap: 0;
     }
 
-    .dashboard-side {
+    .hero-side {
         display: none !important;
     }
 
-    .dashboard-container {
-        padding: 0;
+    .hero {
+        min-height: 100vh;
+        height: auto;
+    }
+
+    .dashboard-layout {
+        padding: 40px 2rem;
     }
 
     .tracker-cards {
