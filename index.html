@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PulseWell — Fitness Progress Dashboard</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">PulseWell</div>
+            <button class="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="#dashboard" class="nav-link">Dashboard</a></li>
+                <li><a href="#basics" class="nav-link">Basics</a></li>
+                <li><a href="#womens-health" class="nav-link">Women's Health</a></li>
+                <li><a href="#stress" class="nav-link">Stress & Calm</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- SECTION 1: FITNESS DASHBOARD HERO & TRACKER -->
+        <section id="dashboard" class="dashboard-section">
+            <div class="hero">
+                <div class="hero-gradient"></div>
+                <div class="hero-content">
+                    <h1 class="hero-title">Track. Push. Transform.</h1>
+                    <p class="hero-subtitle">Your fitness journey, visualized — one day at a time.</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary">Start Tracking</button>
+                        <button class="btn btn-ghost">Learn the Basics</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-container">
+                <!-- Tracker Cards Grid -->
+                <div class="tracker-cards">
+                    <!-- Calories Card -->
+                    <div class="tracker-card">
+                        <div class="card-header">
+                            <h3>Today's Calories</h3>
+                        </div>
+                        <div class="card-body">
+                            <svg class="calorie-ring" viewBox="0 0 120 120">
+                                <circle cx="60" cy="60" r="50" class="ring-bg"></circle>
+                                <circle cx="60" cy="60" r="50" class="ring-progress" style="--percentage: 65"></circle>
+                            </svg>
+                            <div class="calorie-info">
+                                <div class="calorie-value">1560 / 2000</div>
+                                <div class="calorie-label">kcal</div>
+                            </div>
+                        </div>
+                        <div class="card-input">
+                            <input type="number" placeholder="Add calories" class="input-field" id="calorie-input">
+                            <button class="btn-small">Log</button>
+                        </div>
+                    </div>
+
+                    <!-- Weekly Workouts Card -->
+                    <div class="tracker-card">
+                        <div class="card-header">
+                            <h3>Weekly Workouts</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="workout-dots" id="workout-dots">
+                                <button class="dot" data-day="Mon"></button>
+                                <button class="dot" data-day="Tue"></button>
+                                <button class="dot" data-day="Wed"></button>
+                                <button class="dot" data-day="Thu"></button>
+                                <button class="dot" data-day="Fri"></button>
+                                <button class="dot" data-day="Sat"></button>
+                                <button class="dot" data-day="Sun"></button>
+                            </div>
+                            <div class="workout-labels">
+                                <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Water Intake Card -->
+                    <div class="tracker-card">
+                        <div class="card-header">
+                            <h3>Water Intake</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="water-drops" id="water-drops">
+                                <!-- 8 water drops generated by JS -->
+                            </div>
+                            <div class="water-count"><span id="water-count">0</span> / 8 glasses</div>
+                        </div>
+                    </div>
+
+                    <!-- Weight Log Card -->
+                    <div class="tracker-card">
+                        <div class="card-header">
+                            <h3>Body Weight Log</h3>
+                        </div>
+                        <div class="card-body">
+                            <svg class="weight-sparkline" id="weight-sparkline" viewBox="0 0 200 80">
+                                <polyline points="10,60 40,55 70,45 100,50 130,40 160,35 190,38" class="sparkline-curve"></polyline>
+                            </svg>
+                            <div class="weight-input-group">
+                                <input type="number" placeholder="kg" class="input-field weight-input" id="weight-input" step="0.1">
+                                <button class="btn-small">Log</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Weekly Activity Chart -->
+                <div class="chart-section">
+                    <h2 class="chart-title">Your Weekly Activity</h2>
+                    <div class="chart-container">
+                        <svg class="activity-chart" id="activity-chart" viewBox="0 0 600 300">
+                            <!-- Grid lines and axes -->
+                            <line x1="40" y1="250" x2="580" y2="250" class="axis"></line>
+                            <line x1="40" y1="20" x2="40" y2="250" class="axis"></line>
+                            
+                            <!-- Y-axis labels -->
+                            <text x="35" y="255" class="axis-label">0</text>
+                            <text x="30" y="195" class="axis-label">30</text>
+                            <text x="30" y="135" class="axis-label">60</text>
+                            <text x="30" y="75" class="axis-label">90</text>
+                            
+                            <!-- Grid lines -->
+                            <line x1="40" y1="200" x2="580" y2="200" class="grid-line"></line>
+                            <line x1="40" y1="140" x2="580" y2="140" class="grid-line"></line>
+                            <line x1="40" y1="80" x2="580" y2="80" class="grid-line"></line>
+                            
+                            <!-- Data curve (animated) -->
+                            <polyline id="chart-curve" points="40,180 120,160 200,140 280,170 360,120 440,100 520,130" class="chart-curve"></polyline>
+                            
+                            <!-- Data points -->
+                            <circle cx="40" cy="180" r="4" class="chart-dot"></circle>
+                            <circle cx="120" cy="160" r="4" class="chart-dot"></circle>
+                            <circle cx="200" cy="140" r="4" class="chart-dot"></circle>
+                            <circle cx="280" cy="170" r="4" class="chart-dot"></circle>
+                            <circle cx="360" cy="120" r="4" class="chart-dot"></circle>
+                            <circle cx="440" cy="100" r="4" class="chart-dot"></circle>
+                            <circle cx="520" cy="130" r="4" class="chart-dot"></circle>
+                            
+                            <!-- X-axis labels -->
+                            <text x="40" y="275" class="axis-label">Mon</text>
+                            <text x="115" y="275" class="axis-label">Tue</text>
+                            <text x="195" y="275" class="axis-label">Wed</text>
+                            <text x="280" y="275" class="axis-label">Thu</text>
+                            <text x="360" y="275" class="axis-label">Fri</text>
+                            <text x="440" y="275" class="axis-label">Sat</text>
+                            <text x="520" y="275" class="axis-label">Sun</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Workout Logger -->
+                <div class="workout-logger">
+                    <h2>Today's Workout Logger</h2>
+                    <form class="logger-form" id="logger-form">
+                        <div class="form-row">
+                            <input type="text" placeholder="Exercise name" class="input-field" id="exercise-name">
+                            <input type="number" placeholder="Sets" class="input-field" id="exercise-sets" min="1" max="10">
+                            <input type="number" placeholder="Reps" class="input-field" id="exercise-reps" min="1" max="100">
+                        </div>
+                        <div class="form-row">
+                            <input type="number" placeholder="Weight (kg)" class="input-field" id="exercise-weight" step="0.5">
+                            <input type="number" placeholder="Duration (min)" class="input-field" id="exercise-duration" min="1">
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">Add Exercise</button>
+                        </div>
+                    </form>
+                    <div class="session-log" id="session-log"></div>
+                    <button class="btn btn-ghost" id="clear-session">Clear Session</button>
+                </div>
+
+                <!-- BMI Calculator -->
+                <div class="bmi-calculator">
+                    <h2>BMI Calculator</h2>
+                    <div class="bmi-inputs">
+                        <input type="number" placeholder="Height (cm)" class="input-field" id="bmi-height" step="0.1">
+                        <input type="number" placeholder="Weight (kg)" class="input-field" id="bmi-weight" step="0.1">
+                        <input type="number" placeholder="Age" class="input-field" id="bmi-age" min="1" max="120">
+                        <button class="btn btn-primary" id="bmi-calculate">Calculate</button>
+                    </div>
+                    <div class="bmi-result" id="bmi-result" style="display: none;">
+                        <div class="bmi-value" id="bmi-value">--</div>
+                        <div class="bmi-category" id="bmi-category">--</div>
+                    </div>
+                    <p class="bmi-disclaimer">BMI is one of many indicators — always consult a professional.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: FITNESS BASICS FOR BEGINNERS -->
+        <section id="basics" class="basics-section">
+            <div class="basics-container">
+                <!-- Intro -->
+                <div class="basics-hero">
+                    <h2>Every expert was once a beginner.</h2>
+                </div>
+
+                <!-- Energy Systems -->
+                <div class="energy-systems">
+                    <div class="energy-card">
+                        <svg class="energy-icon" viewBox="0 0 64 64">
+                            <circle cx="32" cy="32" r="28" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <path d="M32 12 L40 28 L28 28 L36 44 L28 32 L40 32 Z" fill="currentColor"/>
+                        </svg>
+                        <h3>Cardiovascular</h3>
+                        <p>Builds heart strength and endurance. Your foundation for stamina and health.</p>
+                    </div>
+                    <div class="energy-card">
+                        <svg class="energy-icon" viewBox="0 0 64 64">
+                            <rect x="12" y="20" width="40" height="28" fill="none" stroke="currentColor" stroke-width="2" rx="4"/>
+                            <line x1="20" y1="25" x2="20" y2="45" stroke="currentColor" stroke-width="2"/>
+                            <line x1="32" y1="20" x2="32" y2="48" stroke="currentColor" stroke-width="2"/>
+                            <line x1="44" y1="25" x2="44" y2="45" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <h3>Strength</h3>
+                        <p>Builds and repairs muscle. Increases metabolism and functional power.</p>
+                    </div>
+                    <div class="energy-card">
+                        <svg class="energy-icon" viewBox="0 0 64 64">
+                            <path d="M32 12 Q20 20 20 32 Q20 44 32 52 Q44 44 44 32 Q44 20 32 12" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="32" cy="32" r="4" fill="currentColor"/>
+                        </svg>
+                        <h3>Flexibility</h3>
+                        <p>Maintains mobility and prevents injury. Essential for longevity.</p>
+                    </div>
+                </div>
+
+                <!-- Macronutrients -->
+                <div class="macros-section">
+                    <h2>Macronutrients Explained</h2>
+                    <div class="macros-grid">
+                        <div class="macro-card">
+                            <div class="macro-icon protein"></div>
+                            <h3>Protein</h3>
+                            <p>Builds and repairs muscle tissue. Essential for recovery and strength.</p>
+                            <div class="macro-tags">
+                                <span class="tag">Chicken</span>
+                                <span class="tag">Eggs</span>
+                                <span class="tag">Legumes</span>
+                                <span class="tag">Fish</span>
+                            </div>
+                        </div>
+                        <div class="macro-card">
+                            <div class="macro-icon carbs"></div>
+                            <h3>Carbohydrates</h3>
+                            <p>Your primary fuel source. Powers workouts and brain function.</p>
+                            <div class="macro-tags">
+                                <span class="tag">Oats</span>
+                                <span class="tag">Rice</span>
+                                <span class="tag">Fruits</span>
+                                <span class="tag">Bread</span>
+                            </div>
+                        </div>
+                        <div class="macro-card">
+                            <div class="macro-icon fats"></div>
+                            <h3>Fats</h3>
+                            <p>Supports hormones and joint health. Critical for nutrient absorption.</p>
+                            <div class="macro-tags">
+                                <span class="tag">Nuts</span>
+                                <span class="tag">Olive Oil</span>
+                                <span class="tag">Avocado</span>
+                                <span class="tag">Fish</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quiz -->
+                <div class="quiz-section">
+                    <h2>What Does Your Body Need?</h2>
+                    <div class="quiz-container" id="quiz-container">
+                        <!-- Generated by JS -->
+                    </div>
+                    <div class="quiz-result" id="quiz-result" style="display: none;"></div>
+                </div>
+
+                <!-- Workout Plans -->
+                <div class="workout-plans">
+                    <h2>Beginner Workout Plans</h2>
+                    <div class="tabs">
+                        <button class="tab-btn active" data-tab="week1">Week 1</button>
+                        <button class="tab-btn" data-tab="week2">Week 2</button>
+                        <button class="tab-btn" data-tab="week3">Week 3</button>
+                    </div>
+                    <div class="tab-content" id="week1-content">
+                        <div class="day-grid">
+                            <div class="day-card cardio">
+                                <div class="day-label">Monday</div>
+                                <ul class="exercises">
+                                    <li>Brisk Walk - 20 min</li>
+                                    <li>Jumping Jacks - 3×15</li>
+                                    <li>Cycling - 15 min</li>
+                                </ul>
+                            </div>
+                            <div class="day-card strength">
+                                <div class="day-label">Tuesday</div>
+                                <ul class="exercises">
+                                    <li>Push-ups - 3×8</li>
+                                    <li>Squats - 3×12</li>
+                                    <li>Plank - 3×20s</li>
+                                </ul>
+                            </div>
+                            <div class="day-card cardio">
+                                <div class="day-label">Wednesday</div>
+                                <ul class="exercises">
+                                    <li>Jogging - 15 min</li>
+                                    <li>Burpees - 3×10</li>
+                                    <li>Jump Rope - 5 min</li>
+                                </ul>
+                            </div>
+                            <div class="day-card strength">
+                                <div class="day-label">Thursday</div>
+                                <ul class="exercises">
+                                    <li>Lunges - 3×10</li>
+                                    <li>Dumbbell Rows - 3×10</li>
+                                    <li>Wall Sit - 3×30s</li>
+                                </ul>
+                            </div>
+                            <div class="day-card rest">
+                                <div class="day-label">Friday</div>
+                                <ul class="exercises">
+                                    <li>Yoga - 20 min</li>
+                                    <li>Stretching - 10 min</li>
+                                    <li>Walk - 15 min</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="week2-content" style="display: none;">
+                        <div class="day-grid">
+                            <div class="day-card strength">
+                                <div class="day-label">Monday</div>
+                                <ul class="exercises">
+                                    <li>Push-ups - 4×10</li>
+                                    <li>Squats - 4×15</li>
+                                    <li>Plank - 4×30s</li>
+                                </ul>
+                            </div>
+                            <div class="day-card cardio">
+                                <div class="day-label">Tuesday</div>
+                                <ul class="exercises">
+                                    <li>Jogging - 20 min</li>
+                                    <li>Burpees - 4×12</li>
+                                    <li>Jump Rope - 7 min</li>
+                                </ul>
+                            </div>
+                            <div class="day-card strength">
+                                <div class="day-label">Wednesday</div>
+                                <ul class="exercises">
+                                    <li>Lunges - 4×12</li>
+                                    <li>Dumbbell Rows - 4×12</li>
+                                    <li>Wall Sit - 4×40s</li>
+                                </ul>
+                            </div>
+                            <div class="day-card cardio">
+                                <div class="day-label">Thursday</div>
+                                <ul class="exercises">
+                                    <li>Cycling - 25 min</li>
+                                    <li>Mountain Climbers - 4×15</li>
+                                    <li>High Knees - 3×30s</li>
+                                </ul>
+                            </div>
+                            <div class="day-card rest">
+                                <div class="day-label">Friday</div>
+                                <ul class="exercises">
+                                    <li>Yoga - 30 min</li>
+                                    <li>Deep Stretching - 15 min</li>
+                                    <li>Meditation - 10 min</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="week3-content" style="display: none;">
+                        <div class="day-grid">
+                            <div class="day-card strength">
+                                <div class="day-label">Monday</div>
+                                <ul class="exercises">
+                                    <li>Push-ups - 4×15</li>
+                                    <li>Squats - 4×20</li>
+                                    <li>Plank - 4×45s</li>
+                                </ul>
+                            </div>
+                            <div class="day-card cardio">
+                                <div class="day-label">Tuesday</div>
+                                <ul class="exercises">
+                                    <li>Running - 25 min</li>
+                                    <li>Burpees - 5×15</li>
+                                    <li>Jump Rope - 10 min</li>
+                                </ul>
+                            </div>
+                            <div class="day-card strength">
+                                <div class="day-label">Wednesday</div>
+                                <ul class="exercises">
+                                    <li>Lunges - 5×15</li>
+                                    <li>Dumbbell Rows - 5×15</li>
+                                    <li>Push-up to Plank - 4×50s</li>
+                                </ul>
+                            </div>
+                            <div class="day-card cardio">
+                                <div class="day-label">Thursday</div>
+                                <ul class="exercises">
+                                    <li>Interval Run - 30 min</li>
+                                    <li>Mountain Climbers - 5×20</li>
+                                    <li>High Knees - 4×45s</li>
+                                </ul>
+                            </div>
+                            <div class="day-card rest">
+                                <div class="day-label">Friday</div>
+                                <ul class="exercises">
+                                    <li>Yoga Flow - 40 min</li>
+                                    <li>Meditation - 15 min</li>
+                                    <li>Foam Rolling - 10 min</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recovery Section -->
+                <div class="recovery-section">
+                    <div class="recovery-banner">
+                        <h3>Rest is where growth happens.</h3>
+                    </div>
+                    <div class="recovery-pills">
+                        <div class="recovery-pill">
+                            <svg class="recovery-icon" viewBox="0 0 64 64">
+                                <circle cx="32" cy="32" r="24" fill="none" stroke="currentColor" stroke-width="2"/>
+                                <path d="M32 12 L32 32 L42 42" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <div>
+                                <strong>Sleep</strong>
+                                <p>7–9 hours per night</p>
+                            </div>
+                        </div>
+                        <div class="recovery-pill">
+                            <svg class="recovery-icon" viewBox="0 0 64 64">
+                                <path d="M32 12 L35 22 L45 22 L37 28 L40 38 L32 32 L24 38 L27 28 L19 22 L29 22 Z" fill="currentColor"/>
+                                <path d="M32 40 L36 50 L42 48 L38 54 L44 58 L38 56 L36 62 L32 56 L28 62 L26 56 L20 58 L26 54 L22 48 L28 50 Z" fill="currentColor"/>
+                            </svg>
+                            <div>
+                                <strong>Hydration</strong>
+                                <p>2–3 liters daily</p>
+                            </div>
+                        </div>
+                        <div class="recovery-pill">
+                            <svg class="recovery-icon" viewBox="0 0 64 64">
+                                <circle cx="32" cy="32" r="20" fill="none" stroke="currentColor" stroke-width="2"/>
+                                <path d="M32 16 L35 24 L43 24 L36 30 L39 38 L32 32 L25 38 L28 30 L21 24 L29 24 Z" fill="currentColor"/>
+                            </svg>
+                            <div>
+                                <strong>Active Recovery</strong>
+                                <p>Gentle movement days</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: WOMEN'S HORMONAL HEALTH -->
+        <section id="womens-health" class="womens-health-section">
+            <div class="womens-container">
+                <div class="womens-hero">
+                    <h2>You are not alone. Your body is not broken.</h2>
+                    <p>A gentle guide to understanding PCOD, PCOS, and hormonal health.</p>
+                    <div class="womens-blobs">
+                        <div class="blob blob-1"></div>
+                        <div class="blob blob-2"></div>
+                        <div class="blob blob-3"></div>
+                    </div>
+                </div>
+
+                <!-- PCOS vs PCOD -->
+                <div class="pcos-explainer">
+                    <div class="pcos-card">
+                        <div class="pcos-icon">
+                            <svg viewBox="0 0 64 64">
+                                <circle cx="32" cy="32" r="24" fill="none" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="24" cy="26" r="3" fill="currentColor"/>
+                                <circle cx="32" cy="22" r="3" fill="currentColor"/>
+                                <circle cx="40" cy="26" r="3" fill="currentColor"/>
+                                <circle cx="42" cy="34" r="3" fill="currentColor"/>
+                                <circle cx="40" cy="42" r="3" fill="currentColor"/>
+                                <circle cx="32" cy="44" r="3" fill="currentColor"/>
+                                <circle cx="24" cy="42" r="3" fill="currentColor"/>
+                                <circle cx="22" cy="34" r="3" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <h3>PCOS</h3>
+                        <p><strong>Polycystic Ovary Syndrome</strong> is an endocrine disorder affecting hormonal balance. Multiple small cysts form on ovaries, disrupting egg release and hormone production.</p>
+                    </div>
+                    <div class="pcos-card">
+                        <div class="pcos-icon">
+                            <svg viewBox="0 0 64 64">
+                                <ellipse cx="32" cy="32" rx="20" ry="24" fill="none" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="32" cy="32" r="4" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <h3>PCOD</h3>
+                        <p><strong>Polycystic Ovarian Disease</strong> describes the structural appearance: cysts visible on ultrasound. More common; often managed with lifestyle changes and diet.</p>
+                    </div>
+                </div>
+
+                <!-- Symptoms -->
+                <div class="symptoms-section">
+                    <h2>Common Symptoms</h2>
+                    <div class="symptoms-grid">
+                        <div class="symptom-chip">
+                            <svg viewBox="0 0 24 24" class="symptom-icon">
+                                <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 8 L14 12 L12 16 L10 12 Z" fill="currentColor"/>
+                            </svg>
+                            <span>Irregular Periods</span>
+                        </div>
+                        <div class="symptom-chip">
+                            <svg viewBox="0 0 24 24" class="symptom-icon">
+                                <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 6 L15 12 L12 18 L9 12 Z" fill="currentColor"/>
+                            </svg>
+                            <span>Acne</span>
+                        </div>
+                        <div class="symptom-chip">
+                            <svg viewBox="0 0 24 24" class="symptom-icon">
+                                <path d="M4 10 L6 4 L8 10 L14 12 L8 14 L6 20 L4 14 L-2 12 Z" fill="currentColor"/>
+                            </svg>
+                            <span>Hair Loss / Thinning</span>
+                        </div>
+                        <div class="symptom-chip">
+                            <svg viewBox="0 0 24 24" class="symptom-icon">
+                                <rect x="4" y="6" width="16" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+                                <line x1="12" y1="6" x2="12" y2="18" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span>Weight Gain</span>
+                        </div>
+                        <div class="symptom-chip">
+                            <svg viewBox="0 0 24 24" class="symptom-icon">
+                                <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                                <path d="M8 12 Q12 16 16 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span>Fatigue</span>
+                        </div>
+                        <div class="symptom-chip">
+                            <svg viewBox="0 0 24 24" class="symptom-icon">
+                                <path d="M4 8 L20 8 M6 12 L18 12 M8 16 L16 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span>Mood Swings</span>
+                        </div>
+                        <div class="symptom-chip">
+                            <svg viewBox="0 0 24 24" class="symptom-icon">
+                                <path d="M3 12 L21 12 M12 3 L12 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span>Excess Hair Growth</span>
+                        </div>
+                        <div class="symptom-chip">
+                            <svg viewBox="0 0 24 24" class="symptom-icon">
+                                <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                                <path d="M8 14 Q12 18 16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span>Difficulty Conceiving</span>
+                        </div>
+                    </div>
+                    <p class="symptom-disclaimer">Experiencing some of these doesn't mean you have PCOS. Please speak with a gynecologist.</p>
+                </div>
+
+                <!-- Life Impact -->
+                <div class="life-impact">
+                    <h2>How It Affects Day-to-Day Life</h2>
+                    <div class="impact-cards">
+                        <div class="impact-card">
+                            <h3>Mental Health</h3>
+                            <p>Hormonal fluctuations can intensify anxiety and depression. It's real, it's valid, and seeking support is an act of strength.</p>
+                        </div>
+                        <div class="impact-card">
+                            <h3>Energy Levels</h3>
+                            <p>Chronic fatigue is common. Listening to your body and resting when needed is not laziness—it's self-care.</p>
+                        </div>
+                        <div class="impact-card">
+                            <h3>Fertility</h3>
+                            <p>Many women with PCOS/PCOD conceive with support. Early diagnosis and treatment significantly improve outcomes.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Management Tabs -->
+                <div class="management-section">
+                    <h2>Lifestyle & Management</h2>
+                    <div class="tabs">
+                        <button class="tab-btn active" data-tab="diet-tab">Diet</button>
+                        <button class="tab-btn" data-tab="movement-tab">Movement</button>
+                        <button class="tab-btn" data-tab="stress-tab">Stress</button>
+                        <button class="tab-btn" data-tab="sleep-tab">Sleep</button>
+                    </div>
+                    
+                    <div class="tab-content" id="diet-tab">
+                        <h3>Anti-Inflammatory Foods</h3>
+                        <div class="food-grid">
+                            <div class="food-card">
+                                <strong>Leafy Greens</strong>
+                                <p>Spinach, kale, lettuce — anti-inflammatory, nutrient-dense</p>
+                            </div>
+                            <div class="food-card">
+                                <strong>Fatty Fish</strong>
+                                <p>Salmon, sardines — omega-3s support hormonal health</p>
+                            </div>
+                            <div class="food-card">
+                                <strong>Berries</strong>
+                                <p>Blueberries, raspberries — antioxidants and fiber</p>
+                            </div>
+                            <div class="food-card">
+                                <strong>Nuts & Seeds</strong>
+                                <p>Almonds, flax — healthy fats and minerals</p>
+                            </div>
+                        </div>
+                        <h3 style="margin-top: 2rem;">Foods to Limit</h3>
+                        <p>Refined carbs, sugary drinks, processed foods, trans fats — these can worsen inflammation.</p>
+                    </div>
+                    
+                    <div class="tab-content" id="movement-tab" style="display: none;">
+                        <h3>Recommended Low-Impact Workouts</h3>
+                        <div class="movement-list">
+                            <div class="movement-item">
+                                <strong>Yoga & Pilates</strong>
+                                <p>Gentle, builds strength without excessive cortisol spike</p>
+                            </div>
+                            <div class="movement-item">
+                                <strong>Walking</strong>
+                                <p>Daily 30-min walks stabilize blood sugar</p>
+                            </div>
+                            <div class="movement-item">
+                                <strong>Swimming</strong>
+                                <p>Full-body, low-impact, soothing on joints</p>
+                            </div>
+                            <div class="movement-item">
+                                <strong>Cycling</strong>
+                                <p>Cardiovascular benefit without joint strain</p>
+                            </div>
+                        </div>
+                        <p style="margin-top: 1.5rem; font-style: italic;">High-intensity exercise can sometimes spike cortisol in PCOS. Balance is key.</p>
+                    </div>
+                    
+                    <div class="tab-content" id="stress-tab" style="display: none;">
+                        <h3>Stress Management & Hormonal Health</h3>
+                        <p>Chronic stress elevates cortisol, which can worsen PCOS symptoms. See Section 4 for detailed stress support tools.</p>
+                        <div class="stress-tips">
+                            <div class="tip">
+                                <strong>Breathwork</strong> — 5 min daily helps regulate cortisol
+                            </div>
+                            <div class="tip">
+                                <strong>Journaling</strong> — process emotions safely
+                            </div>
+                            <div class="tip">
+                                <strong>Meditation</strong> — even 10 min calms the nervous system
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="sleep-tab" style="display: none;">
+                        <h3>Sleep Hygiene for Hormonal Balance</h3>
+                        <ul class="sleep-list">
+                            <li>Aim for <strong>7–9 hours</strong> consistently</li>
+                            <li>Keep bedroom cool, dark, quiet</li>
+                            <li>No screens 30 min before bed</li>
+                            <li>Same sleep/wake times, even weekends</li>
+                            <li>Avoid caffeine after 2 PM</li>
+                            <li>Light evening walk aids melatonin</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Doctor Visit Banner -->
+                <div class="doctor-banner">
+                    <h3>When to See a Doctor</h3>
+                    <ul>
+                        <li>Missed periods or severe irregularity</li>
+                        <li>Excessive hair growth or loss</li>
+                        <li>Difficulty conceiving (after 1 year of trying)</li>
+                        <li>Severe mood changes or depression</li>
+                        <li>Weight changes you can't explain</li>
+                    </ul>
+                    <p class="closing-note">Advocating for your health is brave. You deserve to be heard.</p>
+                </div>
+
+                <!-- Resources -->
+                <div class="resources-row">
+                    <h2>Trusted Resources</h2>
+                    <div class="resource-cards">
+                        <a href="#" class="resource-card" target="_blank">
+                            <strong>PCOS Society of India</strong>
+                            <p>Localized support and expert guidance</p>
+                        </a>
+                        <a href="#" class="resource-card" target="_blank">
+                            <strong>Verity UK</strong>
+                            <p>Global PCOS community and information</p>
+                        </a>
+                        <a href="#" class="resource-card" target="_blank">
+                            <strong>WHO Resources</strong>
+                            <p>Evidence-based health information</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: STRESS AWARENESS & SUPPORT -->
+        <section id="stress" class="stress-section">
+            <div class="stress-container">
+                <!-- Opening Message -->
+                <div class="empathy-banner">
+                    <p class="empathy-message">Whatever you're carrying right now — it's okay to set it down for a moment. This page is just for you.</p>
+                    <div class="breathing-circle" id="breathing-circle"></div>
+                    <p class="breathing-label">Breathe in… and out.</p>
+                </div>
+
+                <!-- What is Stress -->
+                <div class="stress-explainer">
+                    <div class="stress-text">
+                        <h2>What Is Stress?</h2>
+                        <div class="stress-types">
+                            <div class="stress-type">
+                                <strong>Acute Stress</strong>
+                                <p>Short-term, triggered by specific events. Your body's alarm system—helpful in emergencies.</p>
+                            </div>
+                            <div class="stress-type">
+                                <strong>Chronic Stress</strong>
+                                <p>Prolonged, from ongoing pressures. Taxing on the body; requires intentional management.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stress-chart">
+                        <h3>How Stress Affects Your Body</h3>
+                        <svg class="stress-bar-chart" viewBox="0 0 300 200">
+                            <!-- Nervous System -->
+                            <rect x="20" y="100" width="50" height="60" class="bar-segment bar-1"></rect>
+                            <text x="45" y="165" class="bar-label">Nervous</text>
+                            
+                            <!-- Immune System -->
+                            <rect x="110" y="80" width="50" height="80" class="bar-segment bar-2"></rect>
+                            <text x="130" y="165" class="bar-label">Immune</text>
+                            
+                            <!-- Digestive System -->
+                            <rect x="200" y="110" width="50" height="50" class="bar-segment bar-3"></rect>
+                            <text x="220" y="165" class="bar-label">Digestive</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Stress Signs -->
+                <div class="stress-signs">
+                    <h2>Signs You Might Be Stressed</h2>
+                    <div class="signs-grid">
+                        <div class="sign-card">
+                            <p>Trouble sleeping or oversleeping</p>
+                        </div>
+                        <div class="sign-card">
+                            <p>Feeling tense in shoulders and neck</p>
+                        </div>
+                        <div class="sign-card">
+                            <p>Eating more or less than usual</p>
+                        </div>
+                        <div class="sign-card">
+                            <p>Feeling like your to-do list never ends</p>
+                        </div>
+                        <div class="sign-card">
+                            <p>Difficulty concentrating</p>
+                        </div>
+                        <div class="sign-card">
+                            <p>Withdrawing from people</p>
+                        </div>
+                        <div class="sign-card">
+                            <p>Feeling irritable or short-tempered</p>
+                        </div>
+                        <div class="sign-card">
+                            <p>Headaches or body aches</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calm Toolkit -->
+                <div class="calm-toolkit">
+                    <h2>Your Calm Toolkit</h2>
+                    <div class="toolkit-grid">
+                        <!-- Box Breathing -->
+                        <div class="toolkit-card">
+                            <h3>Box Breathing</h3>
+                            <p>A 4-second guided breathing exercise to calm your nervous system.</p>
+                            <div class="breathing-box" id="breathing-box">
+                                <div class="box-step">Inhale</div>
+                            </div>
+                            <p class="breathing-instruction">Follow the animation. Breathe with each instruction.</p>
+                        </div>
+
+                        <!-- Journaling -->
+                        <div class="toolkit-card">
+                            <h3>Journaling</h3>
+                            <p>Release thoughts onto paper. Here are some starter prompts.</p>
+                            <div class="journal-prompts">
+                                <p>• What's one thing I'm grateful for today?</p>
+                                <p>• What's worrying me most right now?</p>
+                                <p>• If stress had a color, what would it be?</p>
+                                <button class="btn btn-small" id="more-prompts">See More Prompts</button>
+                            </div>
+                            <div class="extra-prompts" id="extra-prompts" style="display: none;">
+                                <p>• What would I do if I weren't afraid?</p>
+                                <p>• How can I be kinder to myself today?</p>
+                                <p>• What small joy can I find right now?</p>
+                            </div>
+                        </div>
+
+                        <!-- PMR -->
+                        <div class="toolkit-card">
+                            <h3>Progressive Muscle Relaxation</h3>
+                            <p>Tense and release muscle groups. Takes 10–15 minutes.</p>
+                            <div class="pmr-accordion" id="pmr-accordion">
+                                <div class="pmr-item">
+                                    <button class="pmr-toggle">Hands & Forearms</button>
+                                    <div class="pmr-content">Make tight fists for 5 sec, then release. Feel the difference.</div>
+                                </div>
+                                <div class="pmr-item">
+                                    <button class="pmr-toggle">Shoulders & Neck</button>
+                                    <div class="pmr-content">Raise shoulders to ears for 5 sec, release. Roll neck gently.</div>
+                                </div>
+                                <div class="pmr-item">
+                                    <button class="pmr-toggle">Legs & Feet</button>
+                                    <div class="pmr-content">Tighten thighs for 5 sec, release. Flex and point toes.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Digital Detox -->
+                        <div class="toolkit-card">
+                            <h3>Digital Detox</h3>
+                            <p>Small steps to reclaim peace from screens.</p>
+                            <div class="detox-checklist">
+                                <label class="checklist-item">
+                                    <input type="checkbox">
+                                    <span>No phone first 30 min after waking</span>
+                                </label>
+                                <label class="checklist-item">
+                                    <input type="checkbox">
+                                    <span>Phone-free 1 hour before bed</span>
+                                </label>
+                                <label class="checklist-item">
+                                    <input type="checkbox">
+                                    <span>One screen-free meal per day</span>
+                                </label>
+                                <label class="checklist-item">
+                                    <input type="checkbox">
+                                    <span>Mute non-essential notifications</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stress & Hormones -->
+                <div class="hormones-connection">
+                    <h2>Stress & Hormones: The Cortisol Connection</h2>
+                    <div class="connection-card">
+                        <p>Chronic stress keeps cortisol elevated, which can worsen hormonal imbalances—especially for women with PCOS/PCOD. Stress management isn't a luxury; it's essential healthcare.</p>
+                    </div>
+                </div>
+
+                <!-- Movement as Medicine -->
+                <div class="movement-medicine">
+                    <h2>Movement as Medicine</h2>
+                    <div class="medicine-cards">
+                        <div class="medicine-card">
+                            <h3>Yoga</h3>
+                            <p><strong>Why it helps:</strong> Calms the nervous system, builds strength gently.</p>
+                            <p><strong>Try this:</strong> Start with 10-min flows on YouTube — child's pose, cat-cow, downward dog.</p>
+                        </div>
+                        <div class="medicine-card">
+                            <h3>Walking in Nature</h3>
+                            <p><strong>Why it helps:</strong> Grounding, stress-reducing, accessible to all.</p>
+                            <p><strong>Try this:</strong> 20-min park walk, focus on sounds and textures.</p>
+                        </div>
+                        <div class="medicine-card">
+                            <h3>Dancing</h3>
+                            <p><strong>Why it helps:</strong> Joyful, energizing, releases endorphins.</p>
+                            <p><strong>Try this:</strong> 15-min favorite songs in your room — no judgment.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Crisis Resources -->
+                <div class="crisis-section">
+                    <h2>When Stress Feels Like Too Much</h2>
+                    <p class="crisis-intro">Sometimes stress can feel bigger than any technique. That's okay. Reaching out is a form of strength.</p>
+                    
+                    <div class="crisis-resources">
+                        <div class="crisis-card">
+                            <h3>iCall India</h3>
+                            <p>Emotional support helpline for mental health crises.</p>
+                            <p><strong>Call/SMS:</strong> 9152987821 | <strong>Chat:</strong> www.icallhelpline.org</p>
+                        </div>
+                        <div class="crisis-card">
+                            <h3>Vandrevala Foundation</h3>
+                            <p>Free helpline for emotional support and counseling.</p>
+                            <p><strong>Call:</strong> 1860 2662 345 (9 AM – 11 PM)</p>
+                        </div>
+                        <div class="crisis-card">
+                            <h3>Snehi Crisis Helpline</h3>
+                            <p>Support for depression, anxiety, and life crisis.</p>
+                            <p><strong>Call:</strong> 044 2464 1060 (9 AM – 7 PM)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="affirmation">
+                        <p>You are not your anxiety. You are not your worst day. You are here, and that matters.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <h3>PulseWell</h3>
+                <p>Track your fitness, nourish your wellness, support your growth.</p>
+            </div>
+            <div class="footer-right">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#dashboard">Dashboard</a></li>
+                    <li><a href="#basics">Fitness Basics</a></li>
+                    <li><a href="#womens-health">Women's Health</a></li>
+                    <li><a href="#stress">Stress & Support</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-disclaimer">
+            Built with care for every body. This site is for informational purposes only — always consult a healthcare professional.
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
