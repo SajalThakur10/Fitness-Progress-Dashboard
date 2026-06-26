@@ -704,14 +704,15 @@ body {
 }
 
 .energy-card {
-    background: #1C1C1C;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: white;
+    border: 2px solid #00D4FF;
     border-radius: 12px;
     padding: 2rem;
     text-align: center;
     transition: all 0.3s;
     opacity: 0;
     animation: fadeInUp 0.6s forwards;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .energy-card:nth-child(2) { animation-delay: 0.1s; }
@@ -719,8 +720,9 @@ body {
 
 .energy-card:hover {
     transform: translateY(-4px);
-    border-color: var(--color-dash-primary);
-    background: rgba(245, 166, 35, 0.05);
+    border-color: #0066CC;
+    background: #F8F9FF;
+    box-shadow: 0 8px 24px rgba(0, 102, 204, 0.1);
 }
 
 .energy-icon {
@@ -856,14 +858,15 @@ body {
 }
 
 .quiz-question {
-    background: #1C1C1C;
+    background: #F8F9FF;
     border-radius: 12px;
     padding: 1.5rem;
+    border: 1px solid #E0E6FF;
 }
 
 .quiz-question h4 {
     margin-bottom: 1rem;
-    color: var(--color-dash-text);
+    color: #0066CC;
 }
 
 .quiz-options {
@@ -873,26 +876,27 @@ body {
 
 .quiz-option {
     padding: 0.75rem;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: white;
+    border: 2px solid #E0E6FF;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s;
-    color: var(--color-dash-text);
+    color: #1A1A3E;
 }
 
 .quiz-option:hover {
-    background: rgba(245, 166, 35, 0.15);
-    border-color: var(--color-dash-primary);
+    background: #F8F9FF;
+    border-color: #0066CC;
 }
 
 .quiz-option input[type="radio"] {
     margin-right: 0.75rem;
+    accent-color: #0066CC;
 }
 
 .quiz-result {
-    background: linear-gradient(135deg, rgba(245, 166, 35, 0.15), rgba(255, 107, 107, 0.15));
-    border: 2px solid var(--color-dash-primary);
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(0, 102, 204, 0.1) 100%);
+    border: 2px solid #0066CC;
     border-radius: 12px;
     padding: 2rem;
     text-align: center;
@@ -903,11 +907,11 @@ body {
     font-family: var(--font-display);
     font-size: 1.5rem;
     margin-bottom: 1rem;
-    color: var(--color-dash-primary);
+    color: #0066CC;
 }
 
 .quiz-result p {
-    color: var(--color-dash-text);
+    color: #1A1A3E;
     line-height: 1.6;
 }
 
@@ -917,14 +921,14 @@ body {
     display: flex;
     gap: 1rem;
     margin-bottom: 2rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 2px solid #E0E6FF;
     overflow-x: auto;
 }
 
 .tab-btn {
     background: none;
     border: none;
-    color: var(--color-dash-text-muted);
+    color: #999BBB;
     font-family: var(--font-body);
     font-weight: 600;
     padding: 1rem 0;
@@ -935,18 +939,19 @@ body {
 }
 
 .tab-btn.active {
-    color: var(--color-dash-primary);
-    border-bottom-color: var(--color-dash-primary);
+    color: #0066CC;
+    border-bottom-color: #0066CC;
 }
 
 /* Workout Plans */
 
 .workout-plans {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: white;
+    border: 2px solid #F0F4FF;
     border-radius: 16px;
     padding: 2rem;
     margin-bottom: 4rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .workout-plans h2 {
@@ -954,6 +959,7 @@ body {
     font-size: 2rem;
     margin-bottom: 2rem;
     text-align: center;
+    color: #0066CC;
 }
 
 .day-grid {
@@ -967,21 +973,22 @@ body {
     padding: 1.5rem;
     opacity: 0;
     animation: fadeInUp 0.6s forwards;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .day-card.cardio {
-    background: rgba(255, 107, 107, 0.15);
+    background: rgba(255, 107, 107, 0.08);
     border-left: 4px solid #FF6B6B;
 }
 
 .day-card.strength {
-    background: rgba(245, 166, 35, 0.15);
-    border-left: 4px solid var(--color-dash-primary);
+    background: rgba(0, 102, 204, 0.08);
+    border-left: 4px solid #0066CC;
 }
 
 .day-card.rest {
-    background: rgba(170, 170, 170, 0.1);
-    border-left: 4px solid #AAAAAA;
+    background: rgba(240, 244, 255, 0.8);
+    border-left: 4px solid #D0D8FF;
 }
 
 .day-label {
@@ -990,7 +997,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 1rem;
-    color: var(--color-dash-text);
+    color: #0066CC;
 }
 
 .exercises {
@@ -998,10 +1005,10 @@ body {
 }
 
 .exercises li {
-    color: var(--color-dash-text-muted);
+    color: #666699;
     font-size: 0.9rem;
     padding: 0.5rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid #F0F4FF;
 }
 
 .exercises li:last-child {
@@ -1036,7 +1043,7 @@ body {
 }
 
 .recovery-pill {
-    background: #1C1C1C;
+    background: white;
     border-radius: 12px;
     padding: 1.5rem;
     text-align: center;
@@ -1044,21 +1051,23 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    border: 2px solid #E0E6FF;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 .recovery-icon {
     width: 48px;
     height: 48px;
-    color: var(--color-dash-primary);
+    color: #0066CC;
 }
 
 .recovery-pill strong {
-    color: var(--color-dash-text);
+    color: #0066CC;
     font-size: 1.1rem;
 }
 
 .recovery-pill p {
-    color: var(--color-dash-text-muted);
+    color: #666699;
     font-size: 0.9rem;
 }
 
