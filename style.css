@@ -211,8 +211,9 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
-                radial-gradient(circle at 80% 50%, rgba(123, 44, 191, 0.2) 0%, transparent 50%);
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.6) 100%),
+                radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(123, 44, 191, 0.1) 0%, transparent 50%);
     z-index: 0;
 }
 
@@ -364,6 +365,7 @@ body {
     overflow: hidden;
     flex: 1;
     max-width: 600px;
+    background: url('https://source.unsplash.com/1200x600/?workout,fitness,gym') center/cover no-repeat;
 }
 
 /* Dashboard Layout - Cards Section */
@@ -1169,22 +1171,32 @@ body {
     text-align: center;
     position: relative;
     margin-bottom: 4rem;
-    padding: 3rem 2rem;
+    padding: 4rem 2rem;
+    background: url('https://source.unsplash.com/1200x600/?wellness,women,yoga') center/cover no-repeat,
+                linear-gradient(135deg, rgba(253, 246, 240, 0.92), rgba(192, 98, 122, 0.08));
+    background-blend-mode: overlay;
+    border-radius: 16px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .womens-hero h2 {
     font-family: var(--font-display);
     font-size: 3rem;
-    color: var(--color-womens-primary);
+    color: white;
     margin-bottom: 1rem;
     line-height: 1.2;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .womens-hero p {
     font-size: 1.125rem;
-    color: var(--color-womens-text);
+    color: rgba(255, 255, 255, 0.95);
     max-width: 600px;
     margin: 0 auto;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* Decorative Blobs */
@@ -1354,26 +1366,43 @@ body {
 }
 
 .impact-card {
-    background: white;
+    background: url('https://source.unsplash.com/600x400/?meditation,mindfulness') center/cover no-repeat,
+                linear-gradient(135deg, rgba(192, 98, 122, 0.7), rgba(192, 98, 122, 0.8));
+    background-blend-mode: overlay;
     border-radius: 12px;
     padding: 2rem;
     box-shadow: 0 4px 24px rgba(192, 98, 122, 0.08);
     opacity: 0;
     animation: fadeInUp 0.6s forwards;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
-.impact-card:nth-child(2) { animation-delay: 0.1s; }
-.impact-card:nth-child(3) { animation-delay: 0.2s; }
+.impact-card:nth-child(2) {
+    background: url('https://source.unsplash.com/600x400/?yoga,wellness,energy') center/cover no-repeat,
+                linear-gradient(135deg, rgba(192, 98, 122, 0.7), rgba(192, 98, 122, 0.8));
+    background-blend-mode: overlay;
+    animation-delay: 0.1s;
+}
+
+.impact-card:nth-child(3) {
+    background: url('https://source.unsplash.com/600x400/?nature,peace,fertility') center/cover no-repeat,
+                linear-gradient(135deg, rgba(192, 98, 122, 0.7), rgba(192, 98, 122, 0.8));
+    background-blend-mode: overlay;
+    animation-delay: 0.2s;
+}
 
 .impact-card h3 {
     font-family: var(--font-display);
     font-size: 1.5rem;
-    color: var(--color-womens-primary);
+    color: white;
     margin-bottom: 1rem;
 }
 
 .impact-card p {
-    color: var(--color-womens-text);
+    color: rgba(255, 255, 255, 0.95);
     line-height: 1.6;
 }
 
@@ -1428,20 +1457,45 @@ body {
 }
 
 .food-card {
-    background: rgba(192, 98, 122, 0.08);
+    background: url('https://source.unsplash.com/400x300/?vegetables,greens,food') center/cover no-repeat,
+                linear-gradient(135deg, rgba(192, 98, 122, 0.75), rgba(192, 98, 122, 0.85));
+    background-blend-mode: overlay;
     border-radius: 8px;
-    padding: 1rem;
-    border-left: 3px solid var(--color-womens-primary);
+    padding: 1.5rem;
+    border-left: 3px solid transparent;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.food-card:nth-child(2) {
+    background: url('https://source.unsplash.com/400x300/?salmon,fish,omega3') center/cover no-repeat,
+                linear-gradient(135deg, rgba(192, 98, 122, 0.75), rgba(192, 98, 122, 0.85));
+    background-blend-mode: overlay;
+}
+
+.food-card:nth-child(3) {
+    background: url('https://source.unsplash.com/400x300/?berries,blueberries,fruit') center/cover no-repeat,
+                linear-gradient(135deg, rgba(192, 98, 122, 0.75), rgba(192, 98, 122, 0.85));
+    background-blend-mode: overlay;
+}
+
+.food-card:nth-child(4) {
+    background: url('https://source.unsplash.com/400x300/?nuts,seeds,almonds') center/cover no-repeat,
+                linear-gradient(135deg, rgba(192, 98, 122, 0.75), rgba(192, 98, 122, 0.85));
+    background-blend-mode: overlay;
 }
 
 .food-card strong {
     display: block;
-    color: var(--color-womens-primary);
+    color: white;
     margin-bottom: 0.5rem;
+    font-weight: 700;
 }
 
 .food-card p {
-    color: var(--color-womens-text);
+    color: rgba(255, 255, 255, 0.95);
     font-size: 0.9rem;
 }
 
@@ -1585,33 +1639,43 @@ body {
 .empathy-banner {
     text-align: center;
     margin-bottom: 4rem;
-    padding: 3rem 2rem;
-    background: linear-gradient(135deg, rgba(92, 140, 120, 0.1), rgba(139, 123, 171, 0.1));
+    padding: 4rem 2rem;
+    background: url('https://source.unsplash.com/1200x600/?meditation,calm,mindfulness') center/cover no-repeat,
+                linear-gradient(135deg, rgba(92, 140, 120, 0.75), rgba(139, 123, 171, 0.75));
+    background-blend-mode: overlay;
     border-radius: 16px;
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .empathy-message {
     font-family: var(--font-display);
     font-size: 2rem;
-    color: var(--color-stress-primary);
+    color: white;
     font-style: italic;
     line-height: 1.4;
     margin-bottom: 2rem;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .breathing-circle {
     width: 80px;
     height: 80px;
-    border: 3px solid var(--color-stress-primary);
+    border: 3px solid rgba(255, 255, 255, 0.9);
     border-radius: 50%;
     margin: 2rem auto;
     animation: breathing 4s infinite;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
 .breathing-label {
-    color: var(--color-stress-primary);
+    color: rgba(255, 255, 255, 0.95);
     font-weight: 600;
     font-size: 0.95rem;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
 }
 
 /* Stress Explainer */
@@ -1737,23 +1801,76 @@ body {
 }
 
 .sign-card {
-    background: white;
+    background: url('https://source.unsplash.com/400x300/?calm,wellness,peace') center/cover no-repeat,
+                linear-gradient(135deg, rgba(92, 140, 120, 0.7), rgba(92, 140, 120, 0.8));
+    background-blend-mode: overlay;
     border-radius: 12px;
-    padding: 1.5rem;
+    padding: 2rem;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
     text-align: center;
-    color: var(--color-stress-text);
+    color: white;
     opacity: 0;
     animation: fadeInUp 0.6s forwards;
+    min-height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.sign-card:nth-child(2) { animation-delay: 0.05s; }
-.sign-card:nth-child(3) { animation-delay: 0.1s; }
-.sign-card:nth-child(4) { animation-delay: 0.15s; }
-.sign-card:nth-child(5) { animation-delay: 0.2s; }
-.sign-card:nth-child(6) { animation-delay: 0.25s; }
-.sign-card:nth-child(7) { animation-delay: 0.3s; }
-.sign-card:nth-child(8) { animation-delay: 0.35s; }
+.sign-card:nth-child(2) {
+    background: url('https://source.unsplash.com/400x300/?meditation,mindfulness') center/cover no-repeat,
+                linear-gradient(135deg, rgba(92, 140, 120, 0.7), rgba(92, 140, 120, 0.8));
+    background-blend-mode: overlay;
+    animation-delay: 0.05s;
+}
+
+.sign-card:nth-child(3) {
+    background: url('https://source.unsplash.com/400x300/?yoga,stretching') center/cover no-repeat,
+                linear-gradient(135deg, rgba(92, 140, 120, 0.7), rgba(92, 140, 120, 0.8));
+    background-blend-mode: overlay;
+    animation-delay: 0.1s;
+}
+
+.sign-card:nth-child(4) {
+    background: url('https://source.unsplash.com/400x300/?breathing,rest') center/cover no-repeat,
+                linear-gradient(135deg, rgba(92, 140, 120, 0.7), rgba(92, 140, 120, 0.8));
+    background-blend-mode: overlay;
+    animation-delay: 0.15s;
+}
+
+.sign-card:nth-child(5) {
+    background: url('https://source.unsplash.com/400x300/?sleep,relaxation') center/cover no-repeat,
+                linear-gradient(135deg, rgba(92, 140, 120, 0.7), rgba(92, 140, 120, 0.8));
+    background-blend-mode: overlay;
+    animation-delay: 0.2s;
+}
+
+.sign-card:nth-child(6) {
+    background: url('https://source.unsplash.com/400x300/?nature,calm') center/cover no-repeat,
+                linear-gradient(135deg, rgba(92, 140, 120, 0.7), rgba(92, 140, 120, 0.8));
+    background-blend-mode: overlay;
+    animation-delay: 0.25s;
+}
+
+.sign-card:nth-child(7) {
+    background: url('https://source.unsplash.com/400x300/?peace,serenity') center/cover no-repeat,
+                linear-gradient(135deg, rgba(92, 140, 120, 0.7), rgba(92, 140, 120, 0.8));
+    background-blend-mode: overlay;
+    animation-delay: 0.3s;
+}
+
+.sign-card:nth-child(8) {
+    background: url('https://source.unsplash.com/400x300/?wellness,health') center/cover no-repeat,
+                linear-gradient(135deg, rgba(92, 140, 120, 0.7), rgba(92, 140, 120, 0.8));
+    background-blend-mode: overlay;
+    animation-delay: 0.35s;
+}
+
+.sign-card p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
 
 /* Calm Toolkit */
 
@@ -1776,26 +1893,51 @@ body {
 }
 
 .toolkit-card {
-    background: white;
+    background: url('https://source.unsplash.com/600x400/?breathing,meditation') center/cover no-repeat,
+                linear-gradient(135deg, rgba(92, 140, 120, 0.75), rgba(92, 140, 120, 0.85));
+    background-blend-mode: overlay;
     border-radius: 12px;
     padding: 2rem;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
     opacity: 0;
     animation: fadeInUp 0.6s forwards;
+    min-height: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.toolkit-card:nth-child(2) { animation-delay: 0.1s; }
-.toolkit-card:nth-child(3) { animation-delay: 0.2s; }
-.toolkit-card:nth-child(4) { animation-delay: 0.3s; }
+.toolkit-card:nth-child(2) {
+    background: url('https://source.unsplash.com/600x400/?journal,writing,mindfulness') center/cover no-repeat,
+                linear-gradient(135deg, rgba(92, 140, 120, 0.75), rgba(92, 140, 120, 0.85));
+    background-blend-mode: overlay;
+    animation-delay: 0.1s;
+}
+
+.toolkit-card:nth-child(3) {
+    background: url('https://source.unsplash.com/600x400/?relaxation,massage,wellness') center/cover no-repeat,
+                linear-gradient(135deg, rgba(92, 140, 120, 0.75), rgba(92, 140, 120, 0.85));
+    background-blend-mode: overlay;
+    animation-delay: 0.2s;
+}
+
+.toolkit-card:nth-child(4) {
+    background: url('https://source.unsplash.com/600x400/?therapy,support,mental-health') center/cover no-repeat,
+                linear-gradient(135deg, rgba(92, 140, 120, 0.75), rgba(92, 140, 120, 0.85));
+    background-blend-mode: overlay;
+    animation-delay: 0.3s;
+}
 
 .toolkit-card h3 {
     font-family: var(--font-display);
     font-size: 1.5rem;
-    color: var(--color-stress-primary);
+    color: white;
     margin-bottom: 0.75rem;
 }
 
 .toolkit-card p {
+    color: rgba(255, 255, 255, 0.95);
+}
     color: var(--color-stress-text);
     margin-bottom: 1rem;
     font-size: 0.95rem;
@@ -1806,46 +1948,64 @@ body {
 .breathing-box {
     width: 200px;
     height: 200px;
-    border: 3px solid var(--color-stress-primary);
+    border: 3px solid rgba(255, 255, 255, 0.8);
     margin: 1.5rem auto;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
 }
 
 .box-step {
     font-weight: 700;
-    color: var(--color-stress-primary);
+    color: white;
     animation: boxBreathe 16s infinite;
+    font-size: 1.1rem;
 }
 
 .breathing-instruction {
     text-align: center;
     font-size: 0.875rem;
-    color: var(--color-stress-text);
+    color: rgba(255, 255, 255, 0.95);
     margin-top: 1rem;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 /* Journal Prompts */
 
 .journal-prompts {
-    background: rgba(92, 140, 120, 0.08);
+    background: rgba(255, 255, 255, 0.15);
     border-radius: 8px;
     padding: 1rem;
     margin-bottom: 1rem;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .journal-prompts p {
     margin-bottom: 0.5rem;
-    color: var(--color-stress-text);
+    color: rgba(255, 255, 255, 0.95);
     font-size: 0.9rem;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .extra-prompts {
-    background: rgba(92, 140, 120, 0.08);
+    background: rgba(255, 255, 255, 0.15);
     border-radius: 8px;
     padding: 1rem;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.extra-prompts p {
+    margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 0.9rem;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
 }
 
 .extra-prompts p {
@@ -1862,20 +2022,24 @@ body {
 }
 
 .pmr-item {
-    border: 1px solid rgba(92, 140, 120, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 8px;
     overflow: hidden;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
 }
 
 .pmr-toggle {
     width: 100%;
     padding: 1rem;
-    background: rgba(92, 140, 120, 0.08);
+    background: rgba(255, 255, 255, 0.15);
     border: none;
     text-align: left;
     cursor: pointer;
-    color: var(--color-stress-primary);
+    color: white;
     font-weight: 600;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
     font-family: var(--font-body);
     transition: all 0.3s;
 }
